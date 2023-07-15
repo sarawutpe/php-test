@@ -14,7 +14,6 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y libpq-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install bz2
 RUN docker-php-ext-install curl
 RUN docker-php-ext-install fileinfo
 RUN docker-php-ext-install gd
