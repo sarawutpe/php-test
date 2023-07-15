@@ -10,9 +10,11 @@ COPY . .
 # Enable mod_rewrite for Apache (if needed)
 RUN a2enmod rewrite
 
+RUN apt-get update
+
 # Install PHP extensions
-RUN apt-get update && apt-get install -y libpq-dev \
-    && docker-php-ext-install bz2 curl fileinfo gd gettext mbstring exif mysqli pdo_mysql pdo_pgsql pdo_sqlite pgsql shmop
+RUN apt-get install -y libpq-dev && \
+    docker-php-ext-install bz2 curl fileinfo gd2 pdo gettext mbstring exif mysqli pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite pgsql shmop
 
 # Expose port 80 for Apache
 EXPOSE 80
