@@ -30,7 +30,7 @@ RUN apt-get update && \
     mv phpMyAdmin-5.1.1-all-languages /var/www/html/phpmyadmin
 
 # Configure phpMyAdmin to work with Apache
-RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
+RUN ln -s /var/www/html/phpmyadmin /var/www/html
 
 # Expose port 80 for Apache
 EXPOSE 80
