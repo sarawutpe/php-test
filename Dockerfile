@@ -15,6 +15,17 @@ RUN apt-get update && \
     apt-get install -y libpq-dev && \
     docker-php-ext-install pdo pdo_pgsql
 
+# Install MySQL client
+RUN apt-get update && \
+    apt-get install -y default-mysql-client
+
+# Install phpMyAdmin
+RUN apt-get update && \
+    apt-get install -y phpmyadmin
+
+# Configure phpMyAdmin to work with Apache
+RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
+
 # Expose port 80 for Apache
 EXPOSE 80
 
