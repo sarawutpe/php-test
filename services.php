@@ -141,6 +141,17 @@ class Services
 				return;
 			}
 
+			// Check null
+			$sql = "SELECT * FROM employees WHERE id = :id";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute(['id' => $id]);
+			if ($stmt->rowCount() === 0) {
+				$res->success = false;
+				$res->message = "id $id Not Found.";
+				echo json_encode($res);
+				return;
+			}
+
 			$sql = "UPDATE employees SET name = :name, salary = :salary, dateEmployed = :dateEmployed, position = :position, status = :status WHERE id = :id";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([
@@ -151,13 +162,6 @@ class Services
 				'status' => $status,
 				'id' => $id
 			]);
-
-			if ($stmt->rowCount() === 0) {
-				$res->success = false;
-				$res->message = "id $id Not Found.";
-				echo json_encode($res);
-				return;
-			}
 
 			$res->success = true;
 			echo json_encode($res);
@@ -173,18 +177,23 @@ class Services
 	{
 		try {
 			$res = new stdClass();
-			$sql = "DELETE FROM employees WHERE id = :id";
-			$stmt = $this->db->prepare($sql);
-			$stmt->execute([
-				'id' => $id
-			]);
 
+			// Check null
+			$sql = "SELECT * FROM employees WHERE id = :id";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute(['id' => $id]);
 			if ($stmt->rowCount() === 0) {
 				$res->success = false;
 				$res->message = "id $id Not Found.";
 				echo json_encode($res);
 				return;
 			}
+
+			$sql = "DELETE FROM employees WHERE id = :id";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([
+				'id' => $id
+			]);
 
 			$res->success = true;
 			echo json_encode($res);
