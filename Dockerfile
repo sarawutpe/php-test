@@ -12,22 +12,34 @@ RUN a2enmod rewrite
 
 RUN apt-get update
 
-# Install PHP extensions
-RUN apt-get install -y libpq-dev && \
-    docker-php-ext-install pdo pdo_mysql
+# Install required system packages
+RUN apt-get update && apt-get install -y \
+    libbz2-dev \
+    libcurl4-openssl-dev \
+    libffi-dev \
+    libgettextpo-dev \
+    libgd-dev \
+    libgmp-dev \
+    libicu-dev \
+    libimap-dev \
+    libldap2-dev \
+    libonig-dev \
+    libpq-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libxml2-dev \
+    libzip-dev \
+    zlib1g-dev
 
+# Enable PHP extensions
+RUN docker-php-ext-install bz2 curl fileinfo gd gettext gmp intl mbstring exif mysqli pdo_mysql pdo_pgsql pdo_sqlite pgsql shmop zip
+
+# Uncomment the following line if you need the oci8 extension (Oracle Database)
+# RUN docker-php-ext-install oci8
+
+# Uncomment the following line if you need the odbc extension
+# RUN docker-php-ext-install odbc
 RUN apt-get update
-
-# Install MariaDB client
-RUN apt-get install -y mariadb-client
-
-# Install phpMyAdmin
-RUN apt-get update && \
-    apt-get install -y wget && \
-    wget https://files.phpmyadmin.net/phpMyAdmin/5.1.1/phpMyAdmin-5.1.1-all-languages.tar.gz && \
-    tar xzf phpMyAdmin-5.1.1-all-languages.tar.gz && \
-    rm phpMyAdmin-5.1.1-all-languages.tar.gz && \
-    mv phpMyAdmin-5.1.1-all-languages /var/www/html/phpmyadmin
 
 # Configure phpMyAdmin to work with Apache
 # RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
