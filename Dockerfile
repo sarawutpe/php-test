@@ -18,8 +18,8 @@ RUN apt-get install -y libpq-dev && \
 
 RUN apt-get update
 
-# Install MySQL client
-RUN apt-get install -y default-mysql-client
+# Install MariaDB client
+RUN apt-get install -y mariadb-client
 
 # Install phpMyAdmin
 RUN apt-get update && \
@@ -30,7 +30,7 @@ RUN apt-get update && \
     mv phpMyAdmin-5.1.1-all-languages /var/www/html/phpmyadmin
 
 # Configure phpMyAdmin to work with Apache
-RUN ln -s /var/www/html/phpmyadmin /var/www/html
+RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
 # Expose port 80 for Apache
 EXPOSE 80
