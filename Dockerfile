@@ -13,7 +13,7 @@ RUN a2enmod rewrite
 RUN apt-get update
 
 # Install required system packages
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
     libbz2-dev \
     libcurl4-openssl-dev \
     libffi-dev \
