@@ -7,9 +7,7 @@ RUN yum -y update && \
     yum -y install epel-release
 
 # Download and run aaPanel installation script
-RUN wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && \
-    bash install.sh aapanel && \
-    rm install.sh
+RUN yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh aapanel
 
 # Expose ports for aaPanel
 EXPOSE 8888 888 80
