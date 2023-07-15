@@ -5,7 +5,7 @@ class Services
 
 	function __construct()
 	{
-		$servername = "dpg-cipftm59aq0dcpq2k33g-a.singapore-postgres.render.com";
+		$servername = "j3s.h.filess.io";
 		$username = "empdb_labellike";
 		$password = "483873a379dfd2d64b825f12188aa90a35dda5a9";
 		$database = "empdb_labellike";
