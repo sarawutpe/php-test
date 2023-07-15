@@ -5,7 +5,7 @@ FROM php:7.4-apache
 WORKDIR /var/www/html
 
 # Copy the contents of the current directory to /var/www/html
-COPY . /var/www/html
+COPY . .
 
 # Enable mod_rewrite for Apache (if needed)
 RUN a2enmod rewrite
@@ -14,10 +14,6 @@ RUN a2enmod rewrite
 RUN apt-get update && \
     apt-get install -y libpq-dev && \
     docker-php-ext-install pdo pdo_pgsql
-
-# Additional recommended extensions
-RUN apt-get install -y libzip-dev && \
-    docker-php-ext-install zip
 
 # Expose port 80 for Apache
 EXPOSE 80
