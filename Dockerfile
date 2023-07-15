@@ -11,17 +11,13 @@ COPY . .
 RUN a2enmod rewrite
 
 # Install PHP extensions
-RUN apt-get update && \
-    apt-get install -y libpq-dev && \
-    docker-php-ext-install pdo pdo_pgsql
+RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
 # Install MySQL client
-RUN apt-get update && \
-    apt-get install -y default-mysql-client
+RUN apt-get update && apt-get install -y default-mysql-client
 
 # Install phpMyAdmin
-RUN apt-get update && \
-    apt-get install -y phpmyadmin
+RUN apt-get update && apt-get install -y phpmyadmin
 
 # Configure phpMyAdmin to work with Apache
 RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
