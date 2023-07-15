@@ -6,14 +6,14 @@ class Services
 	function __construct()
 	{
 		$servername = "dpg-cipftm59aq0dcpq2k33g-a.singapore-postgres.render.com";
-		$username = "emp_manager_db_user";
-		$password = "tM3bQGgoCaExkKO1DL01AQoTf9n1xoqN";
-		$database = "emp_manager_db";
-		$port = 5432;
+		$username = "empdb_labellike";
+		$password = "483873a379dfd2d64b825f12188aa90a35dda5a9";
+		$database = "empdb_labellike";
+		$port = 3305;
 
 		try {
 			// Create a connection
-			$this->db = new PDO("pgsql:host=$servername;port=$port;dbname=$database", $username, $password);
+			$this->db = new PDO("mysql:host=$servername;port=$port;dbname=$database", $username, $password);
 			// Set PDO error mode to exception
 			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
