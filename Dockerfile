@@ -5,7 +5,7 @@ FROM php:7.4-apache
 WORKDIR /var/www/html
 
 # Copy the contents of the current directory to /var/www/html
-COPY src/ /var/www/html
+COPY . .
 
 # Enable mod_rewrite for Apache (if needed)
 RUN a2enmod rewrite
