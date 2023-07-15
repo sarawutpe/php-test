@@ -163,7 +163,7 @@
 	function hideLoading() {
 		setTimeout(() => {
 			$('#loading').removeClass("active")
-		}, 1000);
+		}, 0);
 	}
 
 
